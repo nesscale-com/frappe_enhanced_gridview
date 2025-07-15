@@ -32,8 +32,6 @@
     .grid-row {
         .data-row.row {
             flex-wrap: nowrap;
-            // display: grid;
-            // grid-auto-flow: column;
 
             .col {
                 max-width: 100px !important;
@@ -43,58 +41,25 @@
 
                 .field-area {
                     border-bottom: 1px solid var(--table-border-color);
-
                 }
             }
 
-            .col.custom-1 {
-                min-width: 150px !important;
-            }
-
-            .col.custom-2 {
-                min-width: 200px !important;
-            }
-
-            .col.custom-3 {
-                min-width: 250px !important;
-            }
-
-            .col.custom-4 {
-                min-width: 300px !important;
-            }
-
-            .col.custom-5 {
-                min-width: 350px !important;
-            }
-
-            .col.custom-6 {
-                min-width: 400px !important;
-            }
-
-            .col.custom-7 {
-                min-width: 450px !important;
-            }
-
-            .col.custom-8 {
-                min-width: 500px !important;
-            }
-
-            .col.custom-9 {
-                min-width: 550px !important;
-            }
-
-            .col.custom-10 {
-                min-width: 600px !important;
-            }
-
+            .col.custom-1 { min-width: 150px !important; }
+            .col.custom-2 { min-width: 200px !important; }
+            .col.custom-3 { min-width: 250px !important; }
+            .col.custom-4 { min-width: 300px !important; }
+            .col.custom-5 { min-width: 350px !important; }
+            .col.custom-6 { min-width: 400px !important; }
+            .col.custom-7 { min-width: 450px !important; }
+            .col.custom-8 { min-width: 500px !important; }
+            .col.custom-9 { min-width: 550px !important; }
+            .col.custom-10 { min-width: 600px !important; }
 
             .row-check,
             .row-index {
                 max-width: 50px !important;
                 min-width: 50px !important;
             }
-
-
         }
     }
 
@@ -132,4 +97,26 @@
         background-color: grey;
         cursor: pointer;
     }
+
+   // ✅ RTL support fix for horizontal scroll
+[dir="rtl"] .form-grid-container.enhanced-grid-container {
+  direction: rtl !important;
+
+  .grid-row .data-row.row {
+    direction: rtl !important;
+    flex-direction: row-reverse !important;
+  }
+
+  .col {
+    text-align: right;
+  }
+
+  .row-check,
+  .row-index {
+    text-align: center;
+  }
+}
+[dir="rtl"] .grid-heading-row .grid-row {
+  flex-direction: row-reverse !important;
+}
 }
