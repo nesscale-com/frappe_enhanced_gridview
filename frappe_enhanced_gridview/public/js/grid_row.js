@@ -890,6 +890,7 @@ export default class GridRow {
 			let grid_left = parseFloat(grid.style.left);
 			let element_left = el.offset().left;
 			let fieldtype = el.data("fieldtype");
+			const is_rtl = frappe.utils.is_rtl && frappe.utils.is_rtl();
 
 			let offset_right = container_width - (element_left + el.width());
 			let offset_left = 0;
@@ -903,11 +904,11 @@ export default class GridRow {
 				offset_left = element_position_x - 250;
 			}
 			if (element_screen_x < 0) {
-				grid.style.left = `${grid_left - element_screen_x}px`;
+				grid.style.left = `${grid_left + (frappe.utils.is_rtl() ? -offset_right : offset_right)}px`;
 			} else if (offset_left < 0) {
-				grid.style.left = `${grid_left + offset_left}px`;
+				grid.style.left = `${grid_left + (frappe.utils.is_rtl() ? -offset_right : offset_right)}px`;
 			} else if (offset_right < 0) {
-				grid.style.left = `${grid_left + offset_right}px`;
+				grid.style.left = `${grid_left + (frappe.utils.is_rtl() ? -offset_right : offset_right)}px`;
 			}
 		}
 
@@ -983,8 +984,8 @@ export default class GridRow {
 					} else if (grid_start > grid_end) {
 						grid_start = grid_end;
 					}
-
-					grid.style.left = `${frappe.utils.is_rtl() ? "" : "-"}${grid_start}px`;
+					const is_rtl = frappe.utils.is_rtl && frappe.utils.is_rtl();
+					grid.style.left = `${grid_left + (frappe.utils.is_rtl() ? -offset_right : offset_right)}px`;
 				}
 			})
 			.on("touchend", function () {

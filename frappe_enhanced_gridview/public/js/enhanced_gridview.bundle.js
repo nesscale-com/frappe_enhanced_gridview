@@ -107,7 +107,9 @@ class Custom_Grid extends Grid {
 		let me = this
 		this.enhanced_slider.on("input", function (event) {
 			const value = event.target.value;
-			me.form_grid.css("left", `-${value}px`)
+			const is_rtl = frappe.utils.is_rtl && frappe.utils.is_rtl();
+			const offset = is_rtl ? value : -value;
+			me.form_grid.css("left", `${offset}px`);
 			me.setup_scrollable_width()
 		})
 
@@ -304,7 +306,8 @@ class Custom_Grid extends Grid {
 			this.enhanced_slider.prop("max", width - this.form_grid_container[0].clientWidth)
 			this.enhanced_slider.prop("style", "display:block")
 		} else {
-			this.form_grid.css("left", `0px`)
+			const is_rtl = frappe.utils.is_rtl && frappe.utils.is_rtl();
+			this.form_grid.css("left", `${is_rtl ? "0" : "0"}px`);
 			this.enhanced_slider.prop("max", this.form_grid_container[0].clientWidth)
 			this.enhanced_slider.prop("style", "display:none")
 			this.enhanced_slider.prop("value", 0)
