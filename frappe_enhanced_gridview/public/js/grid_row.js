@@ -812,7 +812,7 @@ export default class GridRow {
 		}
 
 		let $col = $(
-			'<div class="col grid-static-col col-xs-' + colsize + ' search"></div>'
+			'<div class="col grid-static-col col-xs- custom-' + colsize + ' search"></div>'
 		).appendTo(this.row);
 
 		let $search_input = $(`
