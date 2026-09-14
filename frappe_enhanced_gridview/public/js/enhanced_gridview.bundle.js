@@ -35,7 +35,7 @@ class Custom_Grid extends Grid {
 	make() {
 		let template = `
 			<div class="grid-field">
-				<label class="control-label">${__(this.df.label || "")}</label>
+				<label class="control-label">${__(this.df.label || "", null, this.df.parent)}</label>
 				<span class="help"></span>
 				<p class="text-muted small grid-description"></p>
 				<div class="grid-custom-buttons"></div>
@@ -118,6 +118,7 @@ class Custom_Grid extends Grid {
 		this.setup_add_row();
 
 		this.setup_grid_pagination();
+		this.update_idx_and_name();
 
 		this.custom_buttons = {};
 		this.grid_buttons = this.wrapper.find(".grid-buttons");
@@ -149,6 +150,7 @@ class Custom_Grid extends Grid {
 			frm: this.frm,
 			grid: this,
 			configure_columns: true,
+			header_row: true,
 		});
 		// implement custom class
 		this.header_search = new Custom_GridRow({
